@@ -911,8 +911,8 @@
     of 4 or 1/4 
     \subsection{Algorithmic Modeling}
     It uses a formula
-    \[\mbox{\textbf{Effort}} = \textbf{A}\times
-        \mbox{\textbf{Size}}^\textbf{B}\times \textbf{M}\]
+    \begin{displaymath}\mbox{\textbf{Effort}} = \textbf{A}\times
+        \mbox{\textbf{Size}}^\textbf{B}\times \textbf{M}\end{displaymath}
     Where:
     \begin{description}
         \item[A] reflects local organizational practices and the type of
@@ -928,21 +928,23 @@
     the factors \textbf{B} and \textbf{M} are subjective.
     \subsubsection{COCOMO II model}
     \paragraph{application-composition model}
-    \[\mbox{\textbf{PM}}=(\mbox{\textbf{NAP}}\times
-        (1-\mbox{\textbf{\%reuse}}/100))/\mbox{\textbf{PROD}}\]
+    \begin{displaymath}\mbox{\textbf{PM}}=(\mbox{\textbf{NAP}}\times
+        (1-\mbox{\textbf{\%reuse}}/100))/\mbox{\textbf{PROD}}\end{displaymath}
     \begin{description}
         \item[PM] is the effort in person months
         \item[NAP] is the number of application-points
-        \item["\%reuse"] is the amount of reuse
+        \item[reuse] is the amount of reuse
         \item[PROD] is the application-point productivity
-    \end{descripiton}
+    \end{description}
     \paragraph{early design model}
-    \[\mbox{\textbf{Effort}}=\mbox{\textbf{A}}\times
-        \mbox{\textbf{Size}}^\mbox{\textbf{B}}\times \mbox{\textbf{M}}\]
+    \begin{displaymath}\mbox{\textbf{Effort}}=\mbox{\textbf{A}}\times\mbox{\textbf{Size}}^
+        \mbox{\textbf{B}}\times \mbox{\textbf{M}}\end{displaymath}
     Like in the previous section described, but the \textbf{Size} is measured
-    in \textbf{KLOC}.
-    \[M=PERS\times RCPX \times RUSE \times PDIF \times PREX \times FCIL\times
-        SCED\]
+    in \textbf{KLOC}
+    \begin{eqnarray}
+        M&=&PERS\times RCPX \times RUSE \times PDIF \nonumber\\
+        &&\times PREX \times FCIL\times SCED\nonumber
+    \end{eqnarray}
     \begin{description}
         \item[PERS] personnel capability
         \item[RCPX] reliability and complexity
@@ -953,12 +955,12 @@
         \item[FCIL] support facilities
     \end{description}
     \paragraph{reuse model}
-    \[\mbox{\textbf{PM}}_\mbox{\textbf{AUTO}}=(\mbox{\textbf{ASLOC}}\times
-        \mbox{\textbf{AT}}/100)/\mbox{\textbf{ATPROD}}\]
+    \begin{displaymath}\mbox{\textbf{PM}}_\mbox{\textbf{AUTO}}=(\mbox{\textbf{ASLOC}}\times
+        \mbox{\textbf{AT}}/100)/\mbox{\textbf{ATPROD}}\end{displaymath}
     \paragraph{post architecture level}
     Done after the architecture design step. Based on the early design model.
     \paragraph{duration and staffing}
-    \[\mbox{\textbf{TDEV}}=3\times (\mbox{\textbf{PM}})^{(0.33+0.2*(B-1.01))}\]
+    \begin{displaymath}\mbox{\textbf{TDEV}}=3\times (\mbox{\textbf{PM}})^{(0.33+0.2*(B-1.01))}\end{displaymath}
     While TDEV is the nominal schedule for the project in calendar months.
 
     \chapter{Quality Management}
@@ -1010,6 +1012,7 @@
             goals of the organization
         \item[Analysis] weaknesses and bottlenecks are identified
         \item[Change] changes are proposed to address some of the weaknesses
+    \end{description}
     \section{Process measurement}
     Quantitative data about the process itself.
     \begin{itemize}
@@ -1038,5 +1041,5 @@
         \item set of process areas related to software process activities
         \item a number of goals  desirable to achieve
         \item a set of good practices to achieve the goals
-
+    \end{enumerate}
 \end{document}
