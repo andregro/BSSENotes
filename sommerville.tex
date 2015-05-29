@@ -1,0 +1,1042 @@
+\documentclass[a4paper,11pt,twocolumn]{report}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,bottom=2.5cm,top=2cm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{color}
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\graphicspath{{images/}}
+\title{Notes to\\"Software Engineering 9"\\by Ian Sommerville}
+\author{André Groß}
+\begin{document}
+    \maketitle
+    \tableofcontents
+    \part[Introduction]{Introduction to Software Engineering}
+    \chapter{Introduction}
+    \section{Professional software development}
+    \subsection{FAQ}
+    \paragraph{Attributes of good software}
+    are maintainable, dependable, usable and should deliver the required 
+    functionality and performance.
+    \paragraph{Software engineering is}
+    an engineering discipline that is concerned with all aspects of software 
+    production.
+    \paragraph{The fundamental activities}
+    are Specification, development, validation and software evolution.
+    \paragraph{The key challenges}
+    are increasing diversity, demands for reduced delivery times and developing
+    trustworthy software.
+    \subsection{Kinds of Software products}
+    \paragraph{Generic products}
+    are stand-alone systems that are produced for the open market.
+    \paragraph{Customized (or bespoken) products}
+    are commissioned by a particular customer and developed especially for him.
+    \subsection{The essential attributes}
+    \paragraph{Maintainability}
+    Describes that a software should be written in a way so that it can evolve
+    quickly to meet changing requirements.
+    \paragraph{Dependability and security}
+    A dependable software should not cause physical or economic damage in case
+    of a System failure, neither should sensitive data get lost or stolen.
+    \paragraph{Efficiency}
+    Software should not make wasteful use of system resources.
+    \paragraph{Acceptability}
+    The software must be acceptable to the type of users for which it is
+    designed. (Understandable, usable and compatible with other Systems)
+    \subsection{Software Engineering}
+    It is an engineering discipline that covers all aspects of software
+    production.
+    It is important for two reasons:
+    \begin{enumerate}
+        \item more and more individuals and society rely on advanced software
+            systems
+        \item it is usually cheaper in the long run to use software engineering
+            methods
+    \end{enumerate}
+    There are four common activities that are shared by all software processes.
+    These are:
+    \begin{description}
+        \item[Specification] where the software functionality with its 
+            operational constraints is getting defined.
+        \item[Development (design and implementation)] where the software is 
+            getting designed and programmed after the specifications.
+        \item[Validation] where it is checked to ensure that it is what the
+            customer requires.
+        \item[Evolution] where the software is modified to reflect changing
+            customer and market requirements.
+    \end{description}
+    \section{Types of applications}
+    \begin{enumerate}
+        \item Stand-alone applications
+        \item Interactive transaction-based applications
+        \item Embedded control systems
+        \item Batch processing systems
+        \item Entertainment systems
+        \item Systems for modeling and simulation
+        \item Data collection systems
+        \item Systems of systems
+    \end{enumerate}
+    \subsection{Software engineering fundamentals}
+    \paragraph{Development process}
+    Software should be developed by a managed and well understood process with
+    clear ideas what is to produced and when.
+    \paragraph{Dependability and performance}
+    The system should behave as expected, without failure and be available when
+    it is required. Should perform efficiently and not waste resources and be
+    secure against attacks.
+    \paragraph{Specification and requirements}
+    It is important to manage and understand them properly to meet the
+    expectations of the customers with a useful system and within budget and
+    schedule.
+    \paragraph{Effective use of existing resources (Reuse)}
+    Where appropriate you should reuse software already developed rather than
+    write new software.
+    \section{Software engineering ethics}
+    \paragraph{Confidentiality}
+    \paragraph{Competence}
+    Do not misrepresent your level of competence.
+    \paragraph{Intellectual property rights}
+    Respect local laws, like patents and copyrights.
+    \paragraph{Computer misuse}
+    Don't use your skills to misuse other peoples computer.
+    \section{Case studies}
+    Don't care.
+    \chapter{Software processes}
+    A software process is a structured set of related activities that leads to 
+    the production of a software product.\\
+    A process model in as abstract representation of a process out of a
+    particular perspective.
+    Like in the introduction presented, the fundamental activities of software
+    engineering are:
+    \paragraph{Specification}
+    The functionality of the software and constraints on its operation must be
+    defined
+    \paragraph{Design and Implementation}
+    The software to meet the specification must be produced.
+    \paragraph{Validation}
+    The software must be validated to ensure that it does what the customer
+    wants.
+    \paragraph{Evolution} The software must evolve to meet changing customer
+    needs.
+    \subsection{Process descriptions may also include}
+    \paragraph{Products}
+    That were produced during the process like the software architecture model.
+    \paragraph{Roles}
+    Reflecting the responsibility of involved people like manager or
+    programmer.
+    \paragraph{Pre- and post-conditions}
+    Which are statements that are true before and after a process activity has
+    been enacted or a product produced. (Example: before arch design the
+    requirements should be approved by the customer)
+    \section{Software process models}
+    A software process model is a simplified representation of a software
+    process.\\
+    Models are not mutually exclusive and are often used together, especially
+    for large systems development.
+    \subsection{Waterfall model}
+    Also known as the software life cycle. \\
+    It is an example of a plan-driven process, you must plan and schedule all
+    of the process activities before work on them.\\
+    Each phase produces one or more documents. A following phase should not
+    start until the previous has finished. They are distinct.\\
+    It should be used when the requirements are well understood an unlikely to
+    change. Means that it is inflexible\\
+    \includegraphics[page=47,clip,trim=6cm 17cm 3cm 4cm,
+    width=\columnwidth]{sommerville-book.pdf}
+    The stages are as following.
+    \paragraph{Requirements analysis and definition}
+    The services, constraints and goals are established by consultation,
+    defined in detail and sere as specifications.
+    \paragraph{System and software design}
+    The system design process creates an overall system architecture.
+    The software design identifies and describes the fundamental software
+    system abstraction and their relationships.
+    \paragraph{Implementation and unit testing}
+    Realization of the design as programs or program units. Unit testing
+    verifies that each unit meets its specification.
+    \paragraph{Integration and system testing}
+    Units are integrated and tested as a complete system to ensure that the
+    requirements have been met. After testing it gets delivered.
+    \paragraph{Operation and maintenance}
+    Normally the longest life cycle phase. Correcting errors, improving and
+    enhancing the system as new requirements are discovered.
+    \subsection{Incremental development}
+    Developing an initial implmentation, exposing this to user comment and
+    evolving it through several versions.\\
+    Specification, development and validation activities are interleaved rather
+    than separate, with rapid feedback.\\
+    It is the fundamental part of agile approaches.\\
+    The key problems are a not visible process and that the system structure
+    tends to degrade.\\
+    It can be plan-driven, agile or a miture of both.\\
+    \includegraphics[page=50,clip,trim=7.4cm 17.5cm 3cm 4cm,
+    width=\columnwidth]{sommerville-book.pdf}\\
+    It has three major benefits, compared to the waterfall model.
+    \paragraph{Cost reduction}
+    of accomodating changing customer requirements, due to reduced
+    documentation.
+    \paragraph{Faster and easier feedback} Customers can comment on
+    demonstrations and see how much is implemented to judge progress.
+    \paragraph{Rapid delivery and deployment}
+    Even if not all functionality has been included, customers are able to use
+    and gain value from the software early.
+    \subsection{Reuse-oriented software engineering}
+    The key in this development process is the reuse of software components.
+    This often happens informal by people knowing existing solutions which they
+    integrate or reimplement.\\
+    Framework of reusable components.\\
+    The main advantage is the reduced development amount and the so reduced
+    cost and risk. Another is a faster delivery time.\\
+    Disadvantages are that reuse leads to a system that not meet the real needs
+    of the user and the control over the system evolution is lost as new
+    components are not under control of the organization using them.\\
+    \includegraphics[page=52,clip,trim=4cm 20cm 3cm 4cm,
+    width=\columnwidth]{sommerville-book.pdf}\\
+    The initial requirements specification stage and the validation stage are
+    comparable with other software processes, the intermediate states differ.\\
+    These stages are:
+    \paragraph{Component analysis}
+    The pool of implemented components is searched for components matching the
+    requirements.
+    \paragraph{Requirements modification}
+    The requirements were modified with the information about the available
+    components to reflect them. Where modifications are impossible the
+    component analysis may be re-entered for alternative solutions.
+    \paragraph{System design with reuse}
+    The framework of the system is composed or an existing framework is reused.
+    New software is designed for features not available by the framework.
+    \paragraph{Development and integration}
+    Software that cannot externally procured is developed and components and
+    COTS systems are integrated. Integration is part of the development
+    process in this model.
+    \subsubsection{Types of software components reused}
+    \begin{enumerate}
+        \item Web services
+        \item Collections of objects like in a component framework (.NET or
+            J2EE)
+        \item stand-alone software systems, configured for particular
+            environment
+    \end{enumerate}
+    \section{Process activities}
+    \subsection{Software Specification}
+    The process of establishing what services are required and the constraints
+    on the systems operation and development.\\
+    \includegraphics[page=55,clip,trim=6cm 17cm 3.5cm 4cm,
+    width=\columnwidth]{sommerville-book.pdf}\\
+    \paragraph{Feasibility study:} Is it technically and financially feasible to
+    build the system?
+    \paragraph{Requirements elicitation and analysis} What do the system
+    stakeholders require or expect from the system?
+    \paragraph{Requirements specification} Defining the requirements in detail.
+    \paragraph{Requirements validation} Checking the validity of the
+    requirements
+    \subsection{Software design and implementation}
+    The process of converting the system specification into an executable
+    system.
+    \paragraph{Software design} is the process to design a software that
+    realises the specifications.
+    \paragraph{Implementation} is the process to translate this structure into
+    anexecutable program.\\
+    \includegraphics[page=56,clip,trim=7cm 15cm 3.5cm 4cm,
+    width=\columnwidth]{sommerville-book.pdf}\\
+    This picture shows a general model of the design process. Design activities
+    are:
+    \paragraph{Architectural design} where u identify the overall structure of
+    the system, their relationships and how they are distributed.
+    \paragraph{Interface design} where u define the interfaces between
+    components.
+    \paragraph{Component design} where u take each system component and design
+    how it will operate.
+    \paragraph{Database design} where u design the system data structures and
+    how these are to be represented in a database.
+    \subsection{Software validation}
+    V\&V is inteded to show that a system conforms to its specification and
+    meets the requirements of the system customer. It involves executing the
+    system with test cases that are derived from the specification of the real
+    data to be processed by the system. Testing is the most common V\&V
+    activity.\\
+    Stages:\\
+    \includegraphics[page=58,clip,trim=7cm 21cm 3.5cm 4cm,
+    width=\columnwidth]{sommerville-book.pdf}\\
+    \paragraph{Development or component testing} Components are tested
+    idependently. Components may be functions or objects or coherent groupings
+    of these entities.
+    \paragraph{System testing} Testing of the system as a whole, testing of
+    emergent properties is particularly important.
+    \paragraph{Acceptance testing} Testing with customer data to check that the
+    system meets the customers needs.\\
+    \includegraphics[page=60,clip,trim=3cm 18cm 2.5cm 4cm,
+    width=\columnwidth]{sommerville-book.pdf}\\
+    \subsection{Software evolution}
+    As requirements change, the software must also change and evolve.\\
+    \includegraphics[page=61,clip,trim=6cm 20cm 3.5cm 4cm,
+    width=\columnwidth]{sommerville-book.pdf}\\
+    Due to reuse, the differences between evolution and development gets
+    smaller.
+    \section{Coping with change}
+    \subsection{Prototyping}
+    It is a version of a system used to demonstrate concepts and try out design
+    options.\\
+    It can be used in:
+    \paragraph{Requirements engineering} process to help with elicitation and
+        validation.
+    \paragraph{Design process} to explore options and develop a UI design.
+    \subsection{Incremental delivery}
+    Rather than deliver the system in a single delivery, the development and
+    delivery is broken down into increments with each increment delivering part
+    of the required functionality.\\
+    User requirements are prioritised.\\
+    Requirements are frozen during a increment.\\
+    \includegraphics[page=64,clip,trim=3cm 18.5cm 3.5cm 4cm,
+    width=\columnwidth]{sommerville-book.pdf}\\
+    \paragraph{Advantages:}
+    \begin{itemize}
+        \item Early availability of system functionality
+        \item Early increments act as a prototype to help elicit requirements
+            for later increments.
+        \item Lower risk of overall project failure.
+        \item The highest priority system services tend to receive the most
+            testing
+    \end{itemize}
+    \paragraph{Disadvantages:}
+    \begin{itemize}
+        \item Process not visible
+        \item Degrading system structure
+        \item Difficult to implement for replacement systems
+    \end{itemize}
+    \subsection{Boehms spiral model}
+    Each loop in the model represents a phase in the process.\\
+    No fixed phases. Loops are chosen depending on what is required.\\
+    Risks are explicitly assessed and resolved throughout the process.\\
+    \includegraphics[page=66,clip,trim=4cm 13.5cm 3.5cm 4cm,
+    width=\columnwidth]{sommerville-book.pdf}\\
+    Rarely used, but helps people to think about iteration in software
+    processes and introducing the risk-driven approach to development.
+    \section{The Rational Unified Process (RUP)}
+    It is a modern generic process derived from the work on the UML and
+    associated process. It brings together aspects of the 3 generic process
+    models discussed previously. Normally described from 3 perspectives:
+    \begin{description}
+        \item[A dynamic] perspective that shows phases over time.
+        \item[A static] perspective that shows process activities.
+        \item[A practice] perspective that suggests good practice.
+    \end{description}
+    \paragraph{Iterative development} based on customer care.
+    \paragraph{Manage requirements} Document them and keep track of changes.
+    \paragraph{Use component-based architecture} to gain reuse.
+    \paragraph{Modelling software} use UML models to present different views of
+    the software.
+    \paragraph{Control changes} Manage changes using a change management system
+    and configuration management tools.
+
+
+    \chapter{Agile software development}
+    \section{Agile methods}
+    \paragraph{Rapid development and delivery} is now often the most important
+    requirement for software systems.
+    \begin{itemize}
+        \item Fast-changing requirements of businesses
+        \item So software nedd to evolve quickly
+    \end{itemize}
+    How to do:
+    \begin{itemize}
+        \item Defining features: Specification, design and implementation are
+            inter-leaved
+        \item Series of versions with stakeholder involvement in evaluation
+        \item Using IDEs (Integrated development environments) for development
+    \end{itemize}
+    \paragraph{Origin and aims} are grown out of the dissatisfaction with the
+    overheads in classical development processes, so the aim is to reduce them
+    and to respond quickly to changing requirements without excessive rework.
+    Other aims are a quick delivery and evolving it due to that faster with an
+    iterative approach of development and focus the code rather than the
+    design.
+    \paragraph{Manifesto}
+    \begin{itemize}
+        \item Individuals and interacitons over processes and tools
+        \item Working software over comprehensive documentation
+        \item Customer collaboration over contract negotiation
+        \item Responding to change over following a plan
+    \end{itemize}
+    While there is value on the right, we value the items on the left more.
+    \subsection{Principles of agile methods}
+    \paragraph{Customer involvement}
+    They schould be dosely involved during the development process.
+    Their role is provide and prioritize new system requirements and to
+    evaluate the iterations of the system.
+    \paragraph{Incremental Delivery}
+    The software is developed in increments with the customer specifying the
+    requirements to be included in each increment.
+    \paragraph{People not process}
+    Team members should be left to develop their own ways of working without
+    prescriptive processes.
+    \paragraph{Embrace change}
+    Expect the system requirements to change and so design the system to
+    accommodate these changes.
+    \paragraph{Maintain simplicity}
+    in the software developed and the development process. eliminate complexity
+    from the system.
+    \subsection{Applicability of agile methods}
+    They have been very successful for some types
+    \begin{enumerate}
+        \item small or medium sized product for sale
+        \item Custom system development within an organization with high
+            customer involvement and not a lot of external rules and 
+            regulations.
+    \end{enumerate}
+    \subsection{Problems}
+    \begin{itemize}
+        \item Often there wont be a customer representative or he wont have
+            enough time.
+        \item Team members may not have suitable personalities.
+        \item Prioritizing changes can be extremely difficult.
+        \item Maintaining simplicity requires extra work.
+        \item The cultural model of the organization might be a problem.
+    \end{itemize}
+    \subsection{Maintenance}
+    \paragraph{Minimal documentation}
+    The tradeoff between documentation and high-qualaty, well-structured,
+    readable code is not easy to accomplish. 
+    \paragraph{Evolution effectivity}
+    Customer may loose interest. Also splitting up teams is complicated because
+    of the loose of knowledge.
+    \section{Plan-driven and agile development}
+    \includegraphics[page=80,clip,trim=7.5cm 19.5cm 4cm 4cm,
+    width=\columnwidth]{sommerville-book.pdf}\\
+    \begin{itemize}
+        \item Detailed design and specification before implementation?\\
+            --> plan-driven
+        \item Rapid feedback and incremental delivery?\\
+            --> agile
+        \item Large system with many, separated teams?\\
+            --> plan-driven
+        \item System with a lot of analysis before implementation and fairly
+            detailed design?\\
+            --> plan-driven
+        \item System lifetime long?\\
+            --> plan-driven
+        \item Good tools for program visualization and analysis available?
+            --> agile
+        \item Team organization distributed?
+            --> plan-driven
+        \item Cultural issues? Traditional engineering for example is
+            plan-driven.
+        \item Team with low skill levels?
+            --> plan-driven
+        \item External regulation? Like in aviation by the FAA?
+            --> plan-driven
+    \end{itemize}
+    \section{Extreme programming}
+    Best known and most widely used agile method. 
+    \includegraphics[page=82,clip,trim=7.5cm 19.5cm 4cm 4cm,
+    width=\columnwidth]{sommerville-book.pdf}
+    \paragraph{incremental planning} Requirements are recorded on story cards
+    and stories included into a release based on available time and priority.
+    \paragraph{Small releases} minimal, useful set of functionality that
+    provides business value is developed first.
+    \paragraph{Simple design} no more design as tho meet the current
+    specification
+    \paragraph{Test first development} automated unit test framework is used
+    before functionality is implemented.
+    \paragraph{Refactoring} All developers are expected to refactor the code
+    continuously.
+    \paragraph{Pair programming}
+    \paragraph{Collective ownership} against an island of expertise. All
+    programmers take responsibility for all of the code.
+    \paragraph{Continuous integration} as soon as a task is comleted it is
+    integrated. (all unit tests must pass)
+    \paragraph{Sustainable pace}large amounts of overtime are not considered
+    acceptable
+    \paragraph{On-site customer}
+    \subsection{Testing}
+    Testing is a problem because of the missing specifications. There is no
+    external team developing system tests.\\
+    To compensate there are these features:
+    \begin{enumerate}
+        \item Test driven development
+        \item incremental test development from scenarios
+        \item user involvement in the test development and validation
+        \item the use of automated testing frameworks
+    \end{enumerate}
+    Writing tests implicitly defines both an interface and a specification of
+    behavior for the functionality being developed.\\
+    Acceptance testing is done incrementally.
+    \subsection{Pair Programming}
+    \begin{itemize}
+        \item Collective ownership
+        \item informal review process
+        \item support of refactoring (evolution/improvement)
+    \end{itemize}
+    \section{Agile project management}
+    Project management in agile approaches is complicated.
+    \subsection{The Scrum approach}
+    is a general agile method focused on managing iterative development. It can
+    be used with more technical approaches like XP to provide a management
+    framework.
+    \includegraphics[page=90,clip,trim=7cm 19.5cm 3.5cm 4cm,
+    width=\columnwidth]{sommerville-book.pdf}
+    \subsection{The three phases}
+    \paragraph{Planning phase} chere you establish the general objectives for
+    the project and design the software architecture.
+    \paragraph{Series of Sprint cycles} where each cycle develops an increment
+    of the system.
+    \paragraph{Closure phase} completes documentation and assesses lessons
+    learned from the project
+    \section{Scaling agile methods}
+    Agile methods were developed for use by small programming teams. 
+
+    \chapter{Requirements engineering}
+    There are different levels of description. The high-level abstract
+    requirement in the offer, to the low level, detailed description of what 
+    the system should do.
+    \paragraph{User requirements} are statements, in a natural language plus
+    diagrams, of what services the system is expected to provide to system
+    users and the constraints under which it must operate.
+    \paragraph{System requirements} are more detailed descriptions of the
+    software systems functions, services and operational constraints The system
+    requirements document (sometimes called a functional specification) should
+    define exactly what is to be implemented. It may be part of the contract
+    between the system buyer and the developer.
+    \section{Functional and non-funcitonal requirements}
+    \subsection{Functional requirements}
+    Statements of services the system should provide, how it should react to
+    particular inputs and how the system should behave in particular
+    situations. In some cases, the functional requirements may also explicitly
+    state what the system should not do.
+    \subsection{Non-functional requirements}
+    are constraints on the services or functions offered by the system. They
+    include timing constraints, constraints on the development process and
+    constraints imposed by standards. Non-functionanl requirements often apply
+    to the system as a whole, rather than individual system features or
+    services.
+    \includegraphics[page=105,clip,trim=3cm 15cm 3.5cm 4cm,
+    width=\columnwidth]{sommerville-book.pdf}
+    \paragraph{Product requirements} constrains the behavior of the software.
+    \paragraph{Organizational requirements} policies and procedures in the
+    customers and developers organization.
+    \paragraph{External requirements} covers all reqs that are derived from
+    factors external to the system and its development process. 
+    \subsection{Metrics for non-functional requirements}
+    \paragraph{Speed} transactions/second,user/(event response time), Screen
+    refresh time
+    \paragraph{Size} Mbytes, number of ROM chips
+    \paragraph{Ease of use} Training time, Number of help frames
+    \paragraph{Reliability} Mean time to failure, Probability of
+    unavailability, Rate of failure occurrence, availability
+    \paragraph{Robustness} Time to restart after failure, Percentage of events
+    causing failure, Probability of data corruption on failure
+    \paragraph{Portability} Percentage of target dependent statements, Number
+    of target systems
+    \section{The software requirements document}
+    It is the document, often called Software Requirements Specification (SRS),
+    that contains the official statement of what the system developers should
+    implement. 
+    \section{Requirements specification}
+    It is the process of writing down the user and system requirements in a
+    document (the one from the last section).\\
+    There are several types:
+    \paragraph{Natural language specification} expressive, intuitive and
+    universal, but vague and ambiguous.
+    \subparagraph{Guidelines}
+    \begin{itemize}
+        \item Standard format
+        \item Differ between Mandatory "shall" and Desirable "should"
+        \item Use text highlighting
+        \item Avoid jargon, abbreviations and acronyms
+        \item Associate a rationale
+    \end{itemize}
+    \paragraph{Structured specifications}
+    Use of a tabular template(s).
+    \subparagraph{Example}
+    \begin{itemize}
+        \item Desc of function or entity
+        \item Desc of inputs and where these come from
+        \item Desc of outputs and where these go
+        \item Requirements
+        \item A Desc of the action to be taken
+        \item pre- and post-conditions
+        \item side effects
+    \end{itemize}
+    \section{Requirements engineering Process}
+    \includegraphics[page=116,clip,trim=3.5cm 11cm 3.5cm 4cm,
+    width=\columnwidth]{sommerville-book.pdf}
+    The process described in chapter 2 is more like a spiral.
+    \section{Requirements elicitation and analysis}
+    \includegraphics[page=118,clip,trim=7.5cm 18cm 5cm 4cm,
+    width=\columnwidth]{sommerville-book.pdf}
+    Developers work with customers and end-users to find out about the
+    application domain, desired services, performance, hardware constraints,
+    and so on.
+    \section{Requirements validation}
+    \begin{itemize}
+        \item Validity checks (is the functionalaty required?)
+        \item Consistency checks (conflicts?)
+        \item Completeness checks
+        \item Realism checks
+        \item Verifiability (testability)
+    \end{itemize}
+    \section{Requirements management}
+    Its all about evolution and change.
+    \begin{itemize}
+        \item Requirements identification
+        \item A change management process
+        \item Traceability policies
+        \item Tool support
+    \end{itemize}
+
+    \chapter{System modeling}
+    \section{Context models}
+    use case diagrams
+    \section{Interaction models}
+    sequence diagrams
+    \section{Structural models}
+    class diagrams
+    \section{Behavioral models}
+    data-flow diagrams (not in uml) and event driven with activity diagrams
+    \section{Model-driven engineering}
+    It is an approach to software development where models rather than programs
+    are the principal output of the dev process. The programs are generated
+    automatically. It is still at an early stage of development and it is
+    unclear whether or not it will have impact in the engineering discipline.
+    \subsection{Model driven architecture} 
+    Model-focused approach to software design and implementation. Models at 
+    different levels of abstraction are created.
+    \begin{enumerate}
+        \item Computationt independent model
+        \item Platform independent model
+        \item Platform specific model
+    \end{enumerate}
+    \subsection{Executable UML}
+    It is a subset of UML 2 called xUML, that is capable of of designing
+    executable Models.\\
+    Its three key model types are:
+    \begin{enumerate}
+        \item Domain models identifying the principal concerns in the system
+        \item Class models
+        \item State models describing the life cycle of the class
+    \end{enumerate}
+
+    \chapter{Architectural design}
+    Understanding how a system should be organized and designing the overall
+    structure of that system.
+    \section{Architectural design decisions}
+    Consider following questions:
+    \begin{itemize}
+        \item Is there a generic architecture template?
+        \item Distribution?
+        \item What patterns will be used?
+        \item Which fundamental approach  to structure the system?
+        \item How to decompose?
+        \item ... (strange questions, p.151)
+    \end{itemize}
+    Close relationship between non-functional requirements and software
+    architecture.
+    \begin{itemize}
+        \item Performance
+        \item Security
+        \item Safety
+        \item Availability
+        \item Maintainability
+    \end{itemize}
+    \section{Architectural views}
+    \begin{enumerate}
+        \item Logical view - key abstraction with visible relation between 
+            entities and requirements
+        \item Process view - interacting processes at runtime
+        \item Development view - decomposition into implemented components
+        \item Physical view - distribution and interaction of components
+    \end{enumerate}
+    \section{Architectural patterns (Buschmann)}
+    \section{Application architecture}
+    In general a System of System approach. Chapter 2
+    
+    \chapter{Design and implementation (Buschmann)}
+    
+    \chapter{Software Testing}
+    Intended to show that a program does what it is intended to do and to
+    descover program defects before it is put into use.
+    \paragraph{Validation} are we building the right product?
+    \paragraph{Verification} are we building the product right?
+    \subsection{Inspections and reviews}
+    They analyze and check the system requirements, design models, the program
+    source code and even proposed system tests. You dont need to execute the
+    software for them and because of that are called static V\&V
+    \subsection{Software testing process}
+    \includegraphics[page=227,clip,trim=3.5cm 20.5cm 3.5cm 4cm,
+    width=\columnwidth]{sommerville-book.pdf}
+    Typical a commercial software system has to go through three stages of
+    testing:
+    \begin{enumerate}
+        \item Development testing, where the system is tested during dev
+        \item Release testing, where a separate testing team tests
+        \item User testing, where users or potential users test the system in
+            their own environment.
+    \end{enumerate}
+    \section{Development Testing}
+    During development, there may be three levels of granularity:
+    \subsection{Unit Testing}
+    The Process of testing individual program components and units.\\
+    An automated test has three parts:\\
+    \begin{enumerate}
+        \item Setup, to initialize the system
+        \item Call, call the object or method to be tested
+        \item Assertion, compare the results with expectation
+    \end{enumerate}
+    Make use of Mock objects.
+    \subsubsection{Choosing unit test cases}
+    Choose effective unit test cases:
+    \begin{enumerate}
+        \item They should show that the component does what it is supposed to
+        \item They should reveal defects in the component
+    \end{enumerate}
+    Effective strategies:
+    \begin{enumerate}
+        \item Partition testing, identify and test all groups of inputs
+        \item Guideline-based testing (based on experience)
+    \end{enumerate}
+    Example guidelines, when testing programs with sequences, arrays or lists:
+    \begin{itemize}
+        \item Test sequences with single value
+        \item Different sequences of different sizes in different tests
+        \item Access first middle and last elements
+    \end{itemize}
+    Whittakers guidelines:
+    \begin{enumerate}
+        \item Choose inputs that force the system to generate all error
+            messages.
+        \item Design inputs that cause input buffers to overflow.
+        \item Repeat the same input or series of inputs numerous times.
+        \item Force invalid outputs to be generated.
+        \item Force computation results to be too large or too small.
+    \end{enumerate}
+    \subsection{Component Testing}
+    Software components are often compositions of interacting objects. The
+    component testing tests the interactions between them. Because of the test
+    of this interaction testing it is also called interface testing.\\
+    There are several kinds of interfaces:
+    \begin{enumerate}
+        \item Parameter interfaces - where data or sometimes function
+            references are passed from one to another. (Methods in an object)
+        \item Shared memory interfaces - where a block of memory is shared
+            (Pointers in C)
+        \item Procedural interfaces - where one component encapsulates a set of
+            procedures that can be called by other components. (Reuse)
+        \item Message passing interfaces - where one comp requests a service by
+            passing a message. (client-server)
+    \end{enumerate}
+    Error classes:
+    \begin{itemize}
+        \item Interface misuese
+        \item Interface misunderstanding
+        \item Timing errors
+    \end{itemize}
+    Guidelines:
+    \begin{itemize}
+        \item Examine the code and test extreme values
+        \item Test against null pointers
+        \item Tests that deliberately cause the component to fail
+        \item Stress testing in message passing systems against timing problems
+        \item Vary execution order for shared memory components to reveal
+            implicit assumptions about production an consumption of the data
+    \end{itemize}
+    \subsection{System Testing}
+    System testing checks that components are compatible, interact correctly
+    and transfer the right data at the right time across their interfaces.\\
+    Difference to component testing:
+    \begin{itemize}
+        \item separate developed and off the shelf systems may be integrated.
+        \item testing the system as a whole and only as a whole
+    \end{itemize}
+    \section{Test-driven development}
+    Approach to program with interleaved testing and code development
+    \includegraphics[page=239,clip,trim=7cm 20cm 4.3cm 4cm,
+    width=\columnwidth]{sommerville-book.pdf}
+    Benefits of TDD:
+    \begin{enumerate}
+        \item Code coverage - every code segment has a test, so everything is
+            covered
+        \item Regression testing - changes to the program do not introduced
+            new bugs (if, they are revealed)
+        \item Simplified debugging - if a test fails, it should be obvious
+            where the problem lies
+        \item System documentation - The tests act as a form of documentation
+            what the code should and schouldnt do.
+    \end{enumerate}
+    The main benefit of TDD is the cost reduction in regression testing.
+    \section{Release testing}
+    Distinctions to System testing:
+    \begin{enumerate}
+        \item separate team should be responsible
+        \item the objective is that the system meets its requirements and is
+            good enough for external use
+    \end{enumerate}
+    It is usualy a black box testing.
+    \paragraph{Requirements based testing}
+    \paragraph{Scenario testing}
+    \paragraph{Performance testing}
+    \section{User testing}
+    Alpha, Beta and Acceptance testing.
+
+    \chapter{Software evolution (passed)}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \part{Dependability and Security (passed)}
+    \addtocounter{chapter}{6}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    \part{Advanced Software Engineering}
+    \chapter{Software Reuse (passed)}
+    
+    \chapter{Component-based software engineering (passed)}
+    
+    \chapter{Distributed software engineering (passed)}
+    
+    \chapter{Service-oriented architecture}
+    Developing distributed systems where the system components are stand-alone
+    services, executing on geographically distributed computers.
+    \paragraph{Standards}
+    \begin{itemize}
+        \item SOAP
+        \item WSDL (Web Service Definition Language)
+        \item WS-BPEL 
+    \end{itemize}
+    \section{Services as reusable components}
+    Services are a natural development of software components where the
+    component model is, in essence, a set of standards associated with web
+    services.
+    \section{Service engineering}
+    It is the process of developing services for reuse in service oriented
+    applications.
+    \subsection{Candidate identification}
+    Services should support business processes.
+    \begin{itemize}
+        \item Utility services
+        \item Business services
+        \item Coordination or process services
+    \end{itemize}
+    \section{Software development with services}
+    It is based around the idea that you compose and configure services to
+    create new, composite services.
+    
+    \chapter{Embedded software (passed)}
+    
+    \chapter{Aspect-oriented software engineering}
+    It is an approach to use the relationship between the requirements and the
+    components to minimize the complexity.
+    \section{The separation of concerns}
+    It means that you should organize your software so that each element in the
+    program  does one thing and one thing only.\\
+    Types of concerns:
+    \begin{itemize}
+        \item Functional
+        \item Quality of service
+        \item Policy
+        \item System 
+        \item Organizational 
+    \end{itemize}
+    Critical are cross-cutting concerns. They are why aop is used
+    \section{Aspects, join points and pointcuts}
+    \begin{description}
+        \item[Advice] The code implementing a concern
+        \item[Aspect] A program abstraction that defines a cross-cutting
+            concern (the name of it)
+        \item[join point] An event in an executing program where the advice may
+            be executed
+        \item[join point model] The set of events that may be referenced in a
+            pointcut
+        \item[pointcut] A statement that defines the join points where the
+            advice should be executed
+        \item[weaving] the incorporation of advice code.
+    \end{description}
+    \section{Software engineering with aspects}
+    They were introduced as a programming language, but the concerns come from
+    the system requirements. Therefore it makes sens to adopt this approach on
+    all stages. Testing is difficult and in design models it is complicated to
+    model the area where and where not they are used.
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \part{Software Management}
+    \chapter{Project Management}
+    Organizational, budget and schedule constraints.
+    \begin{itemize}
+        \item Deliver at agreed time
+        \item Keep costs in budget
+        \item meet the customers expectations
+        \item Maintain a happy and well-functioning team
+    \end{itemize}
+    Activities of Software Management:
+    \begin{itemize}
+        \item Project planning
+        \item Reporting (to customers and managers)
+        \item Risk management
+        \item People management
+        \item Proposal writing (to win a contract)
+    \end{itemize}
+    \section{Risk management}
+    One of the most important jobs for a project manager.\\
+    Risk types:
+    \begin{itemize}
+        \item Project risks - schedule or resources
+        \item Product risks - quality or performance
+        \item Business risks - Risks that affect the organization developing or
+            procuring the software.
+    \end{itemize}
+    The Process of Risk Management:
+    \begin{itemize}
+        \item Identification
+        \item Analysis
+        \item Planing
+        \item Monitoring
+    \end{itemize}
+    \section{Managing people}(passed)
+    \section{Teamwork}(passed)
+
+    \chapter{Project Planning}
+    \section{Software pricing}
+    \section{Plan-driven development}
+    \section{Project scheduling}
+    \section{Agile planning}
+    Iterative approaches where the software is delivered in increments.
+    \section{Estimation techniques}
+    There are two types:
+    \begin{enumerate}
+        \item Experience-based
+        \item Algorithmic cost modeling
+    \end{enumerate}
+    Coping with the uncertainty is not easy and time estimates vary by a factor
+    of 4 or 1/4 
+    \subsection{Algorithmic Modeling}
+    It uses a formula
+    \[\mbox{\textbf{Effort}} = \textbf{A}\times
+        \mbox{\textbf{Size}}^\textbf{B}\times \textbf{M}\]
+    Where:
+    \begin{description}
+        \item[A] reflects local organizational practices and the type of
+            software that is developed.
+        \item[Size] code size or application points.
+        \item[M] Is a multiplier made by combining process, product and
+            development attributes
+        \item[B]usually lies between 1 and 1.5 and is related to the size and
+            complexity of the system.
+    \end{description}
+    \paragraph{Problems:}
+    It is difficult to estimate the Size in an early stage and the estimates of
+    the factors \textbf{B} and \textbf{M} are subjective.
+    \subsubsection{COCOMO II model}
+    \paragraph{application-composition model}
+    \[\mbox{\textbf{PM}}=(\mbox{\textbf{NAP}}\times
+        (1-\mbox{\textbf{\%reuse}}/100))/\mbox{\textbf{PROD}}\]
+    \begin{description}
+        \item[PM] is the effort in person months
+        \item[NAP] is the number of application-points
+        \item["\%reuse"] is the amount of reuse
+        \item[PROD] is the application-point productivity
+    \end{descripiton}
+    \paragraph{early design model}
+    \[\mbox{\textbf{Effort}}=\mbox{\textbf{A}}\times
+        \mbox{\textbf{Size}}^\mbox{\textbf{B}}\times \mbox{\textbf{M}}\]
+    Like in the previous section described, but the \textbf{Size} is measured
+    in \textbf{KLOC}.
+    \[M=PERS\times RCPX \times RUSE \times PDIF \times PREX \times FCIL\times
+        SCED\]
+    \begin{description}
+        \item[PERS] personnel capability
+        \item[RCPX] reliability and complexity
+        \item[RUSE] reuse required
+        \item[PDIF] platform difficulty
+        \item[PREX] personal experience
+        \item[SCED] schedule
+        \item[FCIL] support facilities
+    \end{description}
+    \paragraph{reuse model}
+    \[\mbox{\textbf{PM}}_\mbox{\textbf{AUTO}}=(\mbox{\textbf{ASLOC}}\times
+        \mbox{\textbf{AT}}/100)/\mbox{\textbf{ATPROD}}\]
+    \paragraph{post architecture level}
+    Done after the architecture design step. Based on the early design model.
+    \paragraph{duration and staffing}
+    \[\mbox{\textbf{TDEV}}=3\times (\mbox{\textbf{PM}})^{(0.33+0.2*(B-1.01))}\]
+    While TDEV is the nominal schedule for the project in calendar months.
+
+    \chapter{Quality Management}
+    Concerns:
+    \begin{enumerate}
+        \item At organizational level, QM is concerned with establishing a
+            framework of organizational processes and standards that will lead
+            to high quality software.
+        \item At the project level, QM is concerned with quality processes,
+            checking they have been followed and ensuring that the project
+            outputs are conformant with the standards.
+        \item QM at project level is also concerned with establishing a quality
+            plan. The plan should set out the quality goals and define what
+            processes and standards are to be used.
+    \end{enumerate}
+    \section{Software quality}
+    Its all about meeting the standards and producing a good software
+    \section{Software standards}
+    There are product and process standards that lead to a high quality
+    software.
+    \section{Reviewes and inspections}
+    Related to a deliverables. Examining the software, documentations and
+    records of the process to discover errors and omissions and to see if
+    quality standards have been followed.
+    \section{Software measurement and metrics}
+    It is concerned wit deriving a numeric value or profile for an attribute.
+    Example attributes are:
+    \begin{itemize}
+        \item Depth of inheritance tree
+        \item Cyclomatic complexity
+        \item Lines of code
+        \item Number of Error messages
+        \item Length of user Manual
+        \item fog index
+        \item etc.
+    \end{itemize}
+    
+
+    \chapter{Configuration Management (passed)}
+
+    \chapter{Process Improvement}
+    Better process means better software. Also cost reduction and faster
+    delivery.
+    \section{The process improvement process}
+    \includegraphics[page=727,clip,trim=8cm 17.5cm 6cm 4cm,
+    width=\columnwidth]{sommerville-book.pdf}
+    \begin{description}
+        \item[Measurement] attributes are measured to improve the meet the
+            goals of the organization
+        \item[Analysis] weaknesses and bottlenecks are identified
+        \item[Change] changes are proposed to address some of the weaknesses
+    \section{Process measurement}
+    Quantitative data about the process itself.
+    \begin{itemize}
+        \item Time taken to be completed
+        \item Resources required
+        \item Number of occurrences of an event
+    \end{itemize}
+    \section{Process analysis}
+    Objectives:
+    \begin{itemize}
+        \item understand the activities involved
+        \item understand the relationship between
+        \item relate processes to each other or idealize processes of the same
+            type
+    \end{itemize}
+    \subsection{Process exceptions}
+    Coping with process exceptions and throwing of them. Like if key people get
+    ill, and other risks and unanticipated businesses.
+    \section{Process change}
+    \includegraphics[page=736,clip,trim=4cm 18cm 3.5cm 4cm,
+    width=\columnwidth]{sommerville-book.pdf}
+    \section{The CMMI process improvement framework}
+    Capability Maturity Model Integration\\
+    Components are:
+    \begin{enumerate}
+        \item set of process areas related to software process activities
+        \item a number of goals  desirable to achieve
+        \item a set of good practices to achieve the goals
+
+\end{document}

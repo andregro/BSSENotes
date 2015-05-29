@@ -1,0 +1,706 @@
+\documentclass[a4paper,11pt,twocolumn]{report}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,bottom=2.5cm,top=2cm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{color}
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\graphicspath{ {images/} }
+\setcounter{tocdepth}{1}
+\title{Summary to\\"Pattern-oriented software architecture Volume 1:\\
+    A system of patterns"\\by Frank Buschmann}
+\author{André Groß}
+\begin{document}
+    \maketitle
+    \tableofcontents
+    
+    \part{Architectural Patterns}
+    \chapter{From mud to structure}
+    
+    \section{Layer pattern}
+    The Layers architectural pattern helps to structure applications that can
+    be decomposed into groups of subtasks in which each group of subtasks is at
+    a particular level of abstraction.
+    \subsection{Illustration}
+    \includegraphics[page=50,clip,trim=5cm 1cm 2.5cm 11.5cm,width=\columnwidth]{buschmann-book.pdf}
+    \subsection{Context}
+    A large system that requires decomposition
+    \subsection{Structure}
+    The main structural characteristic of the Layers pattern is that the
+    services of Layer $J$ are only used by Layer $J+1$ -- there are no further
+    direct dependencies between layers. This structure can be compared with a
+    stack, or even an onion. Each individual layer shields all lower layers
+    from direct access by higher layers. Each layer con be a complex entity
+    consisting of different components.
+    \subsection{Benefits}
+    \paragraph{Reuse of layers}
+    Dramatically reducing of development effort.
+    \paragraph{Support for standardization}
+    Clearly-defined and commonly-accepted levels of abstraction enable the dev.
+    of standardized tasks and interfaces.
+    \paragraph{Dependencies are kept local}
+    Standardized interfaces between layer usually confine the effect of code
+    changes to the layer that is changed.
+    \paragraph{Exchangeability}
+    Individual layer implementations can be replaced by semantically equivalent
+    implementations without too great effort.
+    \subsection{Liabilities}
+    \paragraph{Cascades of changing behavior}
+    When the behavior of a layer changes, it has often the effect, that all
+    other layers need to be changed.
+    \paragraph{Lower efficiency}
+    All relevant data must be transferred through a number of intermediate
+    layer, and may be transformed several times.
+    \paragraph{Unnecessary work}
+    If some services performed by lower layers perform excessive or duplicate
+    work not actually required by the higher layer, this has a negative impact
+    on performance.
+    \paragraph{Establishing the correct granularity of layers}
+    A layered architecture with too few layers does not fully exploit this
+    patterns potential for reuseability, changeability and portability. On the
+    other hand, too many layers introduce unnecessary complexity and overheads
+    in the separation of layers and the transformation of arguments and return
+    values.
+    \subsection{Known Use}
+    \paragraph{Virtual Machines} to separate the low levels of hardware and
+    operating systems from higher level like the bytecode and software
+    functionality.
+    \paragraph{APIs} is a classic layer application due to the separation of
+    each layer to other layers with defined interfaces like an api is.
+    \paragraph{Operating Systems} like Windows NT, its microkernel pattern is
+    separated in relaxed layers.
+    \paragraph{Information Systems} often use two layers. In the bottom layer
+    are the data sinks and in the upper are the funcitonalities.
+
+
+    \section{Pipes and Filters}
+    The Pipes and Filters architectural pattern provides a structure for system
+    that process a stream of data Each processing step is encapsulated in a
+    filter component. Data is passed through pipes between adjacent filters.
+    Recombining filters allows you to build families of related systems.
+    \subsection{Illustration}
+    \includegraphics[page=76,clip,trim=1cm 7cm 1cm 8cm,width=\columnwidth]{buschmann-book.pdf}
+    \subsection{Context}
+    Processing data streams.
+    \subsection{Structure}
+    \paragraph{Filter} components are the processing units of the pipeline. He
+    enriches, refines or transforms its input data. A subsequent pipeline
+    element pulls output data from the filter. The previous pipeline element
+    pushes new input. Most commonly, the filter is active in a loop, pulling
+    its input from and push in its output down the pipeline.
+    \paragraph{Pipes} denote the connections between filters, between the data
+    source and the first filter, and between the last filter and the data sink.
+    If two active components are joined, the pipe synchronizes them.
+    This synchronization is done with a first-in-first-out buffer.
+    \subsection{Benefits}
+    \paragraph{No intermediate files necessary, but possible}
+    \paragraph{Flexibility by filter exchange.} With their simple interface,
+    they are easy exchangeable within a processing pipeline.
+    \paragraph{Flexibility by recombination.} This major benefit combined with
+    reusability allows to create new processing pipelines by rearranging or
+    adding one.
+    \paragraph{Reuse of filter components}
+    \paragraph{Rapid prototyping of pipelines.}
+    Its easy to optimize it incrementally.
+    \paragraph{Efficient by parallel processing}
+    Each filter is able to compute independent of another.
+    \subsection{Liabilities}
+    \paragraph{Sharing state information is expensive or inflexible}
+    Sharing global data is a problem and in parallel not desirable.
+    \paragraph{Efficiency gain by parallel processing is often a illusion}
+    Cause of transfer cost, context switching, synchronization and timing.
+    \paragraph{Data transformation overhead}
+    To gain highest flexibility by using the same data type for all filters
+    results in this overhead.
+    \paragraph{Error handling}
+    In case of an error, the whole pipeline crashes.
+    \subsection{Known Use}
+    \paragraph{Unix} command shell pipe mechanism.
+    \paragraph{CMS Pipeline} CMS is an IBM mainframe operating system 
+    extension, to get a unix like behavior.
+    \paragraph{Numerical analysis and graphics toolset.}
+
+
+    \section{Blackboard}
+    The Blackboard architectural pattern is useful for problems for which no
+    deterministic solution strategies are known. In Blackboard several
+    specialized subsystems assemble their knowledge to build a possibly partial
+    or approximate solution.
+    \subsection{Illustration}
+    \includegraphics[page=98,clip,trim=5cm 10.5cm 3cm 3.5cm,width=\columnwidth]{buschmann-book.pdf}
+    \subsection{Context}
+    An immature domain in which no closed approach to a solution is known or
+    feasible.
+    \subsection{Structure}
+    Divide your System into a component called Blackboard, a collection of
+    knowledge sources and a control component.
+    \paragraph{The blackboard} is the central data store. Elements of solution
+    space and control data are stored here.
+    \paragraph{Knowledge sources} are separate, independent subsystems that
+    solve specific aspects of the overall problem. None of them can solve the
+    task of the system alone.
+    \paragraph{The control} component runs a loop that monitors the changes on
+    the blackboard and decides what action to take next. It schedules knowledge
+    source evaluations and activations according to a knowledge application
+    strategy. The bias of this strategy is the data on the blackboard.
+    \subsection{Benefits}
+    \paragraph{Experimentation is easy}
+    \paragraph{Support for changeability and maintainability} due to its
+    strictly separated structure. And the blackboard as communication center.
+    \paragraph{Reusable knowledge sources}
+    \paragraph{Support for fault tolerance and robustness}
+    Cause all results are hypotheses, only the most supported survive. So the
+    structure has a hight tolerance against noisy data and uncertain solutions.
+    \subsection{Liabilities}
+    \paragraph{Difficulty of testing} due to the not deterministic algorithm
+    used, its not reproducible.
+    \paragraph{No good solution is guaranteed}
+    \paragraph{Difficulty of establishing a good control strategy.}
+    \paragraph{Low Efficiency} computational overhead in rejecting wrong
+    hypotheses.
+    \paragraph{High development effort} trial and error solutions.
+    \paragraph{No support for parallelism}
+    \section{Known Use}
+    \paragraph{Speech recognition software}
+    \paragraph{HASP/SIAP} system to detect enemy submarines.
+    \paragraph{CRYSALIS} get three dimensional structure of a protein molecule.
+    \paragraph{Tricero} is a system for aircraft activity monitoring.
+    \paragraph{Generalization}
+    \paragraph{SUS} Software understanding system.
+
+
+    \chapter{Distributed systems}
+    
+    \section{Broker}
+    The broker architectural pattern can be used to structure distributed
+    software systems with decoupled components that interact by remote service
+    invocations. A broker component is responsible for coordinating
+    communication, such as forwarding requests, as well as for transmitting
+    results and exceptions.
+    \subsection{Illustration}
+    \includegraphics[page=126,clip,trim=3.5cm 11cm 1cm 2.5cm,width=\columnwidth]{buschmann-book.pdf}
+    \subsection{Context}
+    Your environment is a distributed and possibly heterogeneous system with
+    independent cooperating components.
+    \subsection{Structure}
+    It comprises six types of participating components clients, servers,
+    brokers, bridges, client side proxies and server side proxies.
+    \paragraph{A server} implements objects that expose their functionality
+    through interfaces that consist of operations and attributes.
+    \paragraph{Clients} are applications that access the services of at least
+    one server. To call remote services, clients forward requests to the
+    broker. After an operation has executed they receive responses or
+    exceptions from the broker.
+    \paragraph{A broker} is a messenger that is responsible for the
+    transmission of responses and exceptions back to the client. He offers APIs
+    to clients and servers.
+    \paragraph{Client side proxies} represent a layer between clients and the
+    broker, so that a remote object appears to the client as a local one.
+    \paragraph{Server side proxies} are generally analogous to client side ones.
+    \paragraph{Bridges} are optional components used for hiding implementation
+    details when two brokers interoperate. 
+    \subsection{Benefits}
+    \paragraph{Location transparency} Clients do not need to know where servers
+    are located and servers do not care where clients are.
+    \paragraph{Changeability and extensibility of components} means, that if
+    servers change but the interface doesnt it has no impact on clients.
+    Modifying the broker without its api has also no impact on clients and
+    servers and neither a change on the client side has impact on the other
+    parts.
+    \paragraph{Portability of a broker system.} The broker system hides
+    operating system and network system details from clients and servers by
+    using indirection layers such as APIs.
+    \paragraph{Interoperability between different Broker systems.} Different
+    broker systems may interoperate if they understand a common protocol for
+    the exchange of messages. This is realized with bridges.
+    \paragraph{Reuseability} when building new client applications you can
+    often base the functionality of your application on existing services.
+    \subsection{Liabilities}
+    \paragraph{Restricted efficiency} cause the broker is a bottle neck and
+    direct communication is always faster. The indirectional layer of a broker
+    enable portability, flexability and changeability in cost of efficiency.
+    \paragraph{Lower fault tolerance.} Compared with a non distributed software
+    system a broker system may offer lower fault tolerance. Fails a server or a
+    broker the applications running on them are unable to continue
+    successfully. Redundancy avoids this problem
+    \subsection{Liability or benefit?}
+    \paragraph{Testing and Debugging} The testing of a client relied on
+    services is more robust and easier. But debugging and testing a broker
+    system is a tedious job.
+    \subsection{Known Use}
+    \paragraph{CORBA} object oriented technology for distributing objects on
+    heterogeneous systems.
+    \paragraph{SOM/DSOM} CORBA-compilant broker system.
+    \paragraph{OLE 2.x} is a server interface.
+    \paragraph{WWW} Browsers act as brokers and servers play the role of
+    service providers.
+    \paragraph{ATM-P} telecommunication system.
+
+
+    
+    \chapter{Interactive systems}
+    
+    \section{Model-View-Controller}
+    The MVC architectural pattern divides an interactive application into three
+    components. The model contains the core functionality and data. Views
+    display information to the user. Controllers handle user input. Views and
+    controllers together comprise the user interface. A change-propagation
+    mechanism ensures consistency between the user interface and the model.
+    \subsection{Illustration}
+    \includegraphics[page=148,clip,trim=1cm 8cm 1cm 5cm,width=\columnwidth]{buschmann-book.pdf}
+    \subsection{Context}
+    Interactive applications with a flexible human computer interface.
+    \subsection{Structure}
+    \paragraph{The model} component contains the functional core of the
+    application. It encapsulates the appropriate data and exports procedures
+    that perform application specific processing. Controllers call these
+    procedures on behalf of the user. The model also provides functions to
+    access its data that are used by view components.
+    \paragraph{The view} components present information of the model in
+    different ways. Each view defines an update procedure that is activated by
+    the change propagation mechanism. Each view creates a suitable controller.
+    There is a one to one relationship between view and controller.
+    \paragraph{The controller} components accept user input as events. How
+    these events are delivered to a controller depends on the user interface
+    platform. The event handling could be implemented inside a controller or it
+    depends on the state of the model.
+    \subsection{Benefits}
+    \paragraph{Multiple views of the same model} Cause of the separation from
+    view and model
+    \paragraph{Synchronized views.} All attached observers are notified of
+    changes to the data at the correct time.
+    \paragraph{'Pluggable' views and controllers.} 
+    \paragraph{Exhangeability of 'look and feel'.} A platform port does not
+    affect the functional core.
+    \paragraph{Framework potential.}
+    \subsection{Liabilities}
+    \paragraph{Increased complexity.}
+    \paragraph{Potential for excessive number of updates.} A update could
+    affect a lot of views to repaint but a repaint must not be done until its
+    own model has changed
+    \paragraph{Intimate connection between view and controller.} Often there is
+    no sharing of controllers between separate views.
+    \paragraph{Close coupling of views and controllers to a model.} Like in the
+    controller-view relationship.
+    \paragraph{Inefficiency of data access in view.} Unnecessary data calls to
+    the model (unchanged data).
+    \paragraph{Inevitability of change to view and controller when porting.}
+    Porting from platform to platform needs change of controllers and view
+    \paragraph{Difficulty of using MVC with modern user-interface tools.} 
+    \subsection{Known Use}
+    \paragraph{Smalltalk}
+    \paragraph{MFC} Microsof foundation class library - for developing windows
+    applications.
+    \paragraph{ET++} is an application framework
+
+
+    \section{Presentation-Abstraction-Control}
+    The Presentation-Abstraction-Control architectural pattern (PAC) defines a
+    structure for interactive software systems in the form of a hierarchy of
+    cooperating agents. Every agent is responsible for a specific aspect of the
+    applications functionality and consists of three components: presentation,
+    abstraction and control. This subdivision separates the human-computer
+    interaction aspects of the agent from its functional core and its
+    communication with other agents.
+    \subsection{Illustration}
+    Hierarchy:\\
+    \includegraphics[width=\columnwidth]{Pac-schema}
+    Intermediate level agent:\\
+    \includegraphics[page=172,clip,trim=4cm 12.5cm 1cm 3cm,width=\columnwidth]{buschmann-book.pdf}
+    \subsection{Context}
+    Development of an interactive application with the help of agents
+    \subsection{Structure}
+    It is a hierarchic pattern with three basic levels.
+    \paragraph{Top level PAC agent} provides the global data model.
+    \subparagraph{-- The abstraction component} maintain this model.
+    \subparagraph{-- The presentation component}
+    of it has few responsibilities like user interface
+    components common to the whole application. 
+    \subparagraph{-- The Control} component allows
+    lower level agents to make use of the services of the top level agent,
+    mostly to access and manipulate the global data model. It also coordinates
+    the hierarchy of agents to ensure correct collaboration and data exchange
+    between it self and lower level agents. Additional, it maintains
+    information about the interaction of the user with the system.
+    \paragraph{Bottom level agents} represent a specific semantic concept of
+    the application domain, like a bar chart in a table calculation program.
+    \subparagraph{-- The presentation component} presents a specific view of
+    the corresponding semantic concept and access to all the functions users
+    can apply to it.
+    \subparagraph{-- The abstraction component} has similar responsibility as
+    the one on top level, maintain agent-specific data, excepts that no other
+    agent depend on this data.
+    \subparagraph{-- The control component} maintains consistency between the
+    abstraction and the presentation components, avoiding direct dependencies
+    between them. It also communicates with higher level agents to exchange
+    data and events
+    \paragraph{Intermediate level agents} fulfill two different roles:
+    composition and coordination. Example: A bar chart has bottom agents for
+    every bar and a intermediate agent groups them to a bar chart. Or
+    coordinate views of the same data like a bar and a line chart of it.
+    \subparagraph{-- The abstraction component} maintains the specific data of
+    the intermediate level agent.
+    \subparagraph{-- The presentation component} implements its user interface.
+    \subparagraph{-- The control component} has the responsibilities of
+    the bottom level and top level agents together.
+    \subsection{Benefits}
+    \paragraph{Separation of concerns.} Different semantic concepts in the
+    application domain are represented by separate agents.
+    \paragraph{Support for change and extension.} Changes to one agent do not
+    affect other agents.
+    \paragraph{Support for multi tasking.} The agents are native distributed
+    and parallel porting affects only the control part of them.
+    \subsection{Liabilities}
+    \paragraph{Increased system complexity}
+    Because every semantic concept needs to be implemented by an own agent.
+    \paragraph{Complex control components.} Because they are communication
+    mediators between abstraction, presentation and other agents.
+    \paragraph{Efficiency} because of a communication overhead between the
+    different agents.
+    \paragraph{Applicability} The smaller atomic semantic concepts are and the
+    greater the similarity of their user interface, the less applicable the
+    pattern is.
+    \subsection{Known use}
+    \paragraph{Network traffic management} to identify bottlenecks in
+    telecommunication networks.
+    \paragraph{Mobile Robot} to separate the sensors and decissions into well
+    separated levels
+    
+    
+    \chapter{Adaptable systems}
+
+    \section{Microkernel}
+    The Microkernel architectural pattern applies to software systems that must
+    be able to adapt to changing system requirements. It separates a minimal
+    functional core from extended functionality and customer-specific parts.
+    The microkernel also serves as a socket for plugging in these extensions
+    and coordinating their collaboration.
+    \subsection{Illustration}
+    \includegraphics[page=197,clip,trim=1.5cm 7.5cm 1.5cm 6cm,width=\columnwidth]{buschmann-book.pdf}
+    \subsection{Context}
+    The development of several applications that use similar programming
+    interfaces that build on the same core functionality.
+    \subsection{Structure}
+    It defines five kinds of participating components:
+    \paragraph{The Microkernel} represents the main component of the pattern.
+    It implements central services such as communication facilities or resource
+    handling. Other components build on all or some of these basic services.
+    They do this indirectly by using one or more interfaces that comprise the
+    functionality exposed by the microkernel.\\
+    In summary, a microkernel implements atomic services, which we refer to as
+    mechanisms. These mechanisms serve as a fundamental base on which more
+    complex functionality, called policies, are constructed.
+    \paragraph{An Internal Server (subsystem)} extends the functionality
+    provided by the microkernel. It represents a separate component that
+    offers additional functionality. The microkernel invokes the functionality
+    of internal servers via service requests. Internal servers can therefore
+    encapsulate some dependencies on the underlying hardware or software
+    system. For example, device drivers that support specific graphics cards
+    are good candidates for internal servers.
+    \paragraph{External Servers} expose their functionality by exporting
+    interfaces in the same way as the microkernel itself does. Each of these
+    external servers runs in a separate process. It receives service requests
+    from client applications using the communication facilities provided by the
+    microkernel, interprets these requests, executes the appropriate services
+    and returns results to its clients. The implementation of services relies
+    on microkernel mechanisms, so external servers need to access the
+    microkernels programming interfaces.
+    \paragraph{A client} is an application that is associated with exactly one
+    external server. It only accesses the programming interfaces provided by
+    the external server.
+    \paragraph{Adapters (emulators)} represent interfaces between clients and
+    their external servers and allow clients to access the services of their
+    external server in a portable way. They are part of the clients address
+    space. A adapter mimics the programming interfaces of that platform and
+    they also protect clients from the implementation details of the
+    microkernel.
+    \subsection{Benefits}
+    \paragraph{Portability} Most you don't need to port ext servers or client
+    apps if you port the system to a new environment and a port to a new
+    hardware environment only requires modification to hardware dependent
+    parts.
+    \paragraph{Flexibility and Extensibility} for an additional view only
+    implement a new ext server. Extending capabilities only requires addition
+    or extension of internal servers.
+    \paragraph{Separation of policy and mechanism} The microkernel component
+    provides all the mechanisms necessary to enable external servers to
+    implement their policies.
+    \paragraph{Scaleability}
+    \paragraph{Reliability} The pattern allows you to run the application on
+    more than one machine (availability). If one machine fails you can switch
+    to another (fault tolerance).
+    \paragraph{Transparency} In distributed system components over a network of
+    machines allows this architecture to access other components without
+    knowing their location. Communication is hidden from clients by adapter and
+    kernel.
+    \subsection{Liabilities}
+    \paragraph{Performance} Monolithic system. Flexibility and extensibility
+    has as always its price in performance.
+    \paragraph{Complexity of design and implementation} 
+
+
+    \section{Reflection}
+    The Reflection architectural pattern provides a mechanism for changing
+    structure and behavior of software systems dynamically. It supports the
+    modification of fundamental aspects, such as type structures and function
+    call mechanism. In this pattern, an application is split into two parts.
+    A meta level provides information about selected system properties and makes
+    the software self-aware. A base level includes the application logic. Its
+    implementation builds on the meta level. Changes to information kept in the
+    meta level affect subsequent base-level behavior.
+    \subsection{Illustration}
+    \includegraphics[page=218,clip,trim=1cm 5.5cm 1cm 11cm,width=\columnwidth]{buschmann-book.pdf}
+    \subsection{Context}
+    Building systems that support their own modification a priori.
+    \subsection{Structure}
+    \paragraph{Meta level} consists of a set of meta objects. Each meta object
+    encapsulates selected information about a single aspect of the structure,
+    behavior, or state of the base level.
+    \paragraph{Base level} defines the application logic. It uses services
+    provided by meta objects and communicates through the meta objects with
+    another base level object.
+    \paragraph{Meta object protocol.} There is often a protocol, that defines
+    the interface between the base and the meta level.
+    \subsection{Benefits}
+    \paragraph{No explicit modification of source code}
+    \paragraph{Changing a software system is easy}
+    \paragraph{Support for many kinds of change}
+    \subsection{Liabilities}
+    \paragraph{Modification at the meta level may cause damage.}
+    \paragraph{Increased number of components}
+    \paragraph{Lower efficiency.}
+    \paragraph{Not all potential changes to the software are supported}
+    \paragraph{Not all languages support reflection.}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \part{Design patterns}
+    \chapter{Structural decomposition}
+
+    \section{Whole-Part}
+    The Whole-Part design pattern helps with the aggregation of components that
+    together form a semantic unit. An aggregate component, the Whole,
+    encapsulates its constituent components, the Parts, organizes their
+    collaboration and provides a common interface to its functionality. Direct
+    access to the Parts is not possible.
+    \subsection{Illustration}
+    \includegraphics[page=248,clip,trim=1.5cm 12cm 1.5cm 3cm,width=\columnwidth]{buschmann-book.pdf}
+    \subsection{Context}
+    Implementing aggregate objects.
+    \subsection{Structure}
+    \paragraph{The whole} object represents an aggregation of smaller objects,
+    which we call Parts. It forms a semantic grouping of its Parts in that it
+    coordinates and organizes their collaboration. For this purpose, the Whole
+    uses the functionality of Part objects for implementing services.
+    \paragraph{Each Part} object is embedded in exactly one Whole. Two or more
+    Choles cannot share the same Part. Each Part is created and destroyed
+    within the life span of its Whole.
+    \subsection{Benefits}
+    \paragraph{Changeability of Parts} modify internal structure without impact
+    on clients.
+    \paragraph{Separation of concerns.} Each concern is implemented by a part.
+    \paragraph{Reuseability} Parts can be reused in other aggregate objects.
+    And Wholes can be reused with scattered parts.
+    \subsection{Liabilities}
+    \paragraph{Lower efficiency through indirection.}
+    \paragraph{Complexity of decomposition into Parts.} This pattern is often
+    hard to find. Especial when a bottom up approach is applied.
+    
+    
+    \chapter{Organisation of work}
+
+    \section{Master-Slave}
+    The Master-Slave design pattern supports fault tolerance, parallel
+    computation and computational accuracy. A master component distributes work
+    to identical slave components and computes a final result from the results
+    these slaves return.
+    \subsection{Illustration}
+    \includegraphics[page=275,clip,trim=4.5cm 7cm 1cm 9.5cm,width=\columnwidth]{buschmann-book.pdf}
+    \subsection{Context}
+    Partitioning work into semantically-identical sub-tasks.
+    \subsection{Structure}
+    \paragraph{The master component} provides a service that can be solved by
+    applying the 'divide and conquer' principle. It offers an interface that
+    allows clients to access this service. Internally the master implements
+    functions for partitioning work into several equal sub tasks, starting and
+    controlling their processing and computing a final result from all the
+    results obtained.
+    \paragraph{Tho slave component} provides a sub service that can process the
+    sub tasks defined by the master. Within a master slave structure there are
+    at least two instances of the slave component connected to the master.
+    \subsection{Benefits}
+    \paragraph{Exchangeability and extensibility} Due to the abstract slave
+    class.
+    \paragraph{Separation of concerns.}
+    \paragraph{Efficiency.}
+    \subsection{Liabilities}
+    \paragraph{Feasibility.}
+    \paragraph{Machine dependency.}
+    \paragraph{Hard to implement}
+    \paragraph{Portability}
+    
+    
+    \chapter{Access Control}
+
+    \section{Proxy}
+    The Proxy design pattern makes the clients of a component communicate with
+    a representative rather than to the component itself. Introducing such a
+    placeholder can serve many purposes, including enhanced efficiency, easier
+    access and protection from unauthorized access.
+    \subsection{Illustration}
+    \includegraphics[page=285,clip,trim=4.5cm 12cm 1.5cm 3cm,width=\columnwidth]{buschmann-book.pdf}
+    \subsection{Context}
+    A client needs access to the services of another component. Direct access
+    is technically possible, but may not be the best approach.
+    \subsection{Structure}
+    \paragraph{The original} implements a particular service.
+    \paragraph{The client} is responsible for a task that needs a service. So 
+    he invokes the functionality of the original indirect by accessing the 
+    proxy. 
+    \paragraph{The proxy} offers the same interface as the original and ensures
+    correct access to the original. 
+    \paragraph{The abstract original} provides the interface implemented by the
+    proxy and the original.
+    \subsection{Benefits}
+    \paragraph{Enhanced efficiency and lower cost.} It helps to implement a
+    load on demand strategy. To avoid unnecessary loads from slow services with
+    caching.
+    \paragraph{Decoupling clients from the location of server components.}
+    \paragraph{Separation of housekeeping code from functionality.}
+    \subsection{Liabilities}
+    \paragraph{Less efficient due to indirection.}
+    \paragraph{Overkill via sophisticated strategies.} Example is caching of
+    highly dynamic applications.
+    
+    
+    \chapter{Management}
+
+    \section{Command Processor}
+    The Command processor design pattern separates the request for a service
+    from its execution. A command processor component manages requests as
+    separate objects, schedules their execution and provides additional
+    services such as the storing of request objects for later undo
+    \subsection{Illustration}
+    \includegraphics[page=299,clip,trim=1.5cm .5cm 1cm 13.5cm,width=\columnwidth]{buschmann-book.pdf}
+    \subsection{Context}
+    Applications that need flexible and extensible user interfaces or
+    applications that provide services related to the execution of user
+    functions such as scheduling or undo.
+    \subsection{Structure}
+    \paragraph{The abstract command} component
+    \paragraph{The controller}
+    \paragraph{The command processor}
+    \paragraph{The supplier} components
+    \subsection{Benefits}
+    \paragraph{Flexibility in the way requests are activated.}
+    \paragraph{Flexibility in the number and functionality of requests}
+    \paragraph{Programming execution related services.}
+    \paragraph{Testability at application level.}
+    \paragraph{Concurrency}
+    \subsection{Liabilities}
+    \paragraph{Efficiency loss}
+    \paragraph{Potential for an excessive number of command classes.}
+    \paragraph{Complexity} in acquiring command parameters.
+
+
+    \section{View Handler}
+    The View Handler design pattern helps to manage all views that a software
+    system provides. A view handler component allows clients to open manipulate
+    and dispose of views. It also coordinates dependencies between views and
+    organizes their update.
+    \subsection{Illustration}
+    \includegraphics[page=314,clip,trim=2cm 3cm 2cm 8.5cm,width=\columnwidth]{buschmann-book.pdf}
+    \subsection{Context}
+    A software system that provides multiple views of application specific data
+    or that supports working with multiple documents.
+    \subsection{Structure}
+    \paragraph{The view handler} is the central component. It is responsible
+    for opening new views and coordinates them. Clients can specify the view 
+    they want.
+    \paragraph{An abstract view} component defines an interface that is common
+    to all views.
+    \paragraph{Specific view} components are derived from the abstract view and
+    implements its interface.
+    \paragraph{Supplier} components provide the data that is displayed by view
+    components.
+    \subsection{Benefits}
+    \paragraph{Uniform handling of views}
+    \paragraph{Extensibility and changeability of views}
+    \paragraph{Application specific view coordination}
+    \subsection{Liabilities}
+    \paragraph{Restricted applicability}
+    \paragraph{Efficiency}
+    
+    
+    \chapter{Communication}
+
+    \section{Forwarder-Reciever}
+    The Forwarder-Reciever design pattern provides transparent interprocess
+    communication for software systems with a peer-to-peer interaction model.
+    It introduces forwarders and receivers to decouple peers from the
+    underlying communication mechanisms.
+    \subsection{Illustration}
+    \includegraphics[page=330,clip,trim=1.5cm 9.5cm 1cm 3.5cm,width=\columnwidth]{buschmann-book.pdf}
+    \subsection{Context}
+    Peer-to-Peer Communication.
+    \subsection{Structure}
+    \paragraph{Peer} components are responsible for application tasks. To carry
+    out their tasks peers need to communicate with other peers. It uses a
+    forwarder to send messages to other peers and a receiver to receive
+    messages.
+    \paragraph{Forwarder} components send messages across process boundaries.
+    \paragraph{Receiver} components are responsible for receiving messages that
+    were sent by a forwarder from a peer.
+    \subsection{Benefits}
+    \paragraph{Efficient inter process communication}
+    \paragraph{Encapsulation of IPC facilities}
+    \subsection{Liabilities}
+    \paragraph{No support for flexible reconfiguration of components.}
+
+
+    \section{Client-Dispatcher-Server}
+    The client dispatcher server design pattern introduces an intermediate
+    layer between clients and servers, the dispatcher component. It provides
+    location transparency by means of a name service and hides the details of
+    the establishment of the communication connection between clients and
+    servers.
+    \subsection{Illustration}
+    \includegraphics[page=345,clip,trim=2cm 12.5cm 1cm 3cm,width=\columnwidth]{buschmann-book.pdf}
+    \subsection{Context}
+    A software system integrating a set of distributed servers, with the
+    servers running locally or distributed over a network.
+    \subsection{Structure}
+    \paragraph{A client} uses the server to do its task. Before sending a
+    request to a server, he asks the dispatcher for a communication channel
+    that he will use for the communication.
+    \paragraph{A server} provides a set of operations to clients. He is
+    registered in the dispatcher.
+    \paragraph{The dispatcher} offers functionality for establishing
+    communication channels between clients and servers.
+    \subsection{Benefits}
+    \paragraph{Exchangeability of servers}
+    \paragraph{Location and migration transparency}
+    \paragraph{Reconfiguration}
+    \paragraph{Fault tolerance}
+    \subsection{Liabilities}
+    \paragraph{Lower efficiency through indirection and explicit connection
+        establishment}
+    \paragraph{Sensitivity to change in the interfaces of the dispatcher
+        component}
+
+
+
+    \section{Publisher-Subscriber}
+    The Publisher-Subscriber design pattern helps to keep the state of
+    cooperating components synchronize. To achieve this it enables one-way
+    propagation of change: one publisher notifies any number of subscribers
+    about changes to its state.
+    \subsection{Illustration}
+    \includegraphics[page=361,clip,trim=1.5cm 14.5cm 1cm 2cm,width=\columnwidth]{buschmann-book.pdf}
+    \subsection{Annotation}
+    This pattern is not well documented like the other patterns. So I will skip
+    the explanatory parts of this pattern.
+
+\end{document}
